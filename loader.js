@@ -25,7 +25,7 @@ var Loader = {
         loader.fadeIn();
 
         // fixing left margin & padding
-        this.fixLoaderDiv(loaderDiv);
+        this.fixLoaderPosition();
     },
 
     stop : function(){
@@ -55,12 +55,13 @@ var Loader = {
                 loaderDiv.html(html);
 
                 // fixing left margin
-                this.fixLoaderDiv(loaderDiv);
+                this.fixLoaderPosition();
             }
         }
     },
 
-    fixLoaderDiv : function(loaderDiv){
+    fixLoaderPosition : function(){
+        var loaderDiv = $("loader > div");
         if (loaderDiv) {
             var padding = 0;
 
