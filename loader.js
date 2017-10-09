@@ -1,5 +1,5 @@
-var loader = {
-    start : function(html, namespace){
+var Loader = {
+    start : function(html){
         // Avoiding start overflow
         if($('loader').length > 0){
             return false;
@@ -22,14 +22,10 @@ var loader = {
             loaderDiv.html(html);
         }
 
-        //if (!$$et.empty(namespace)){
-        //    loader.attr('namespace', namespace);
-        //}
-
         loader.fadeIn();
 
         // fixing left margin & padding
-        fixLoaderDiv(loaderDiv);
+        this.fixLoaderDiv(loaderDiv);
     },
 
     stop : function(){
@@ -42,17 +38,40 @@ var loader = {
         }
     },
 
-    updateHTML : function(html, scope){
+    updateHTML : function(html, timeout){
         var loader = $('loader');
         var loaderDiv = $("loader > div");
 
         if(loader && loaderDiv && typeof html != 'undefined'){
 
-            // Pushing new HTML inside loader
-            loaderDiv.html(html);
+            var that = this;
 
-            // fixing left margin
-            fixLoaderDiv(loaderDiv);
+            if (typeof timeout == 'number' && timeout > 0){
+                setTimeout(function(){
+                    that.updateHTML(html, 0);
+                }, timeout);
+            } else {
+                // Pushing new HTML inside loader
+                loaderDiv.html(html);
+
+                // fixing left margin
+                this.fixLoaderDiv(loaderDiv);
+            }
+        }
+    },
+
+    fixLoaderDiv : function(loaderDiv){
+        if (loaderDiv) {
+            var padding = 0;
+
+            // Checking if there is actually html inside the div
+            if (loaderDiv.html() != ''){
+                loaderDiv.css("padding", 15);
+                loaderDiv.css('margin-left', '-' + ((loaderDiv.width() + 30) / 2) + 'px');
+            } else {
+                loaderDiv.css("padding", 0);
+            }
         }
     }
 };
+
