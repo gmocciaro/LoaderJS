@@ -58,8 +58,14 @@ loader > div * {
     font-size: 26px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1080px) {
     loader > div {
         font-size: 16px;
+        top: 20%;
+    }
+
+    loader::after {
+        margin-top: 0;
+        top: 10%;
     }
 }
