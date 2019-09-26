@@ -37,8 +37,8 @@ loader > div {
     top: 50%;
     margin-top: 110px;
     left: 50%;
-    background-color: #FFFFFF;
-    color: #2D3338;
+    background-color: #565656;
+    color: #FFFFFF;
     font-weight: 300;
     padding: 30px 30px;
     min-width: 400px;
@@ -46,8 +46,9 @@ loader > div {
     text-align: center;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
-    border-radius: 3px;
-    font-size: 26px;
+    border-radius: 10px;
+    font-size: 21px;
+    width: 60%;
 }
 
 loader > div * {
@@ -55,4 +56,10 @@ loader > div * {
     color: #2D3338;
     font-weight: 300;
     font-size: 26px;
+}
+
+@media (max-width: 800px) {
+    loader > div {
+        font-size: 16px;
+    }
 }
